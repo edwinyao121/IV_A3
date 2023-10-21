@@ -104,14 +104,14 @@ body <- dashboardBody(
               titlePanel(strong("Weather in Melbourne")),
               hr(),
               h5(strong(paste("Current Weather Overview of", 
-                              substr(as_datetime(current_weather$dt, tz = "Australia/Sydney"), 1, 10))),
-                 style = "font-size:16px;"),
+                              substr(as_datetime(current_weather$dt, tz = "Australia/Sydney"), 1, 10)))),
               fluidRow(
                 column(4, valueBoxOutput("cur_temp", width = 20)),
                 column(4, valueBoxOutput("wind_speed", width = 20)),
                 column(4, valueBoxOutput("current_condition", width = 20)),
               ),
               hr(),
+              h4(strong("Weather conditions in various areas of Melbourne")),
               fluidRow(
                 column(12, 
                        selectInput("region", "Choose a region:", 
@@ -124,6 +124,8 @@ body <- dashboardBody(
                        uiOutput("weatherBoxes")
                 )
               ),
+              hr(),
+              h4(strong("Melbourne's 5-day weather forecast")),
               fluidRow(
                 column(12, highchartOutput("forecast_temp", height = 300))
               ),
