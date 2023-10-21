@@ -4,6 +4,7 @@ library('ggiraph')
 library('shinyjs')
 library(shinydashboard)
 library(dashboardthemes)
+library(stringr)
 
 library(wordcloud2)
 library(dplyr)
