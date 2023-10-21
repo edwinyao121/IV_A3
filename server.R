@@ -4,7 +4,7 @@ server <- function(input, output, session) {
     # Find the name of the hospital clicked by the user
     sta <- input$tableauViz_parameter_changed$value
     
-    # If no hospital selected, stop
+
     if(is.null(sta)) return()
     if(sta=='null') return()
     
@@ -45,8 +45,7 @@ server <- function(input, output, session) {
   output$pie_near_poi <- renderGirafe({
     # Find the name of the hospital clicked by the user
     station_name <- input$tableauViz_parameter_changed$value
-    
-    # If no hospital selected, stop
+
     if(is.null(station_name)) return()
     if(station_name=='null') return()
     
@@ -54,7 +53,7 @@ server <- function(input, output, session) {
     # transform it into the format required by ggplot's geom_line
     
     result <- find_nearby_poi(station_name)
-    
+
     df_summary <- as.data.frame(table(result$Theme))
     
     p <- ggplot(df_summary, aes(x = "", y = Freq, fill = Var1,

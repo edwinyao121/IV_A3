@@ -44,6 +44,10 @@ sidebar <- dashboardSidebar(
     menuItem("Places to Visit",
              tabName = "poi"
              #,icon = icon('map-location-dot')
+    ),
+    menuItem("test",
+             tabName = "test"
+             #,icon = icon('map-location-dot')
     )
   )
 )
@@ -61,6 +65,11 @@ body <- dashboardBody(
     tabItem("home",fluidPage(
       
       # 定义文字输出的位置
+      carouselHead(),
+      carouselUI()
+      
+    )),
+    tabItem("test",fluidPage(
       textOutput("welcomeMessage")
       
     )),
@@ -73,7 +82,7 @@ body <- dashboardBody(
                        titlePanel(strong("Place Of Interest in Melbourne")),
                        tableauPublicViz(
                          id='tableauViz',
-                         url='https://public.tableau.com/views/A3yyh/Dashboard1?:language=en-US&:display_count=n&:origin=viz_share_link'
+                         url='https://public.tableau.com/views/A3yyh/Sheet3?:language=en-US&:display_count=n&:origin=viz_share_link'
                          ,height="600px",
                        )
                 ),
@@ -81,7 +90,6 @@ body <- dashboardBody(
               ),
               hr(class="white-hr"),
               hr(class="white-hr"),
-              
               
               fluidRow(
                 

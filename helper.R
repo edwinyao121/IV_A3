@@ -58,48 +58,72 @@ theme_color_mapping <- c('Retail' = 'red',
 ################ silde img
 carouselHead <-function(){
   tags$head(
-    tags$link(rel = "stylesheet", type = "text/css", href = "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"),
-    tags$script(type = "text/javascript", src = "https://code.jquery.com/jquery-3.2.1.slim.min.js"),
-    tags$script(type = "text/javascript", src = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"),
-    tags$script(type = "text/javascript", src = "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js")
+    tags$link(rel = "stylesheet", type = "text/css", href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
   )
 }
 carouselUI <- function() {
-  
-  
-  tags$div(class = "carousel slide", data_ride = "carousel", id = "myCarousel",
+  tags$div(id = "myCarousel", class = "carousel slide", data_ride = "carousel",
            
            # Indicators
            tags$ol(class = "carousel-indicators",
                    tags$li(data_target = "#myCarousel", data_slide_to = "0", class = "active"),
                    tags$li(data_target = "#myCarousel", data_slide_to = "1"),
-                   tags$li(data_target = "#myCarousel", data_slide_to = "2")
+                   tags$li(data_target = "#myCarousel", data_slide_to = "2"),
+                   tags$li(data_target = "#myCarousel", data_slide_to = "3")
            ),
            
            # Slides
            tags$div(class = "carousel-inner",
-                    tags$div(class = "carousel-item active",
-                             tags$img(src = "1.png", class = "d-block w-100"),
-                             tags$div(class = "carousel-caption", "Caption for Image 1")
+                    tags$div(class = "item active",
+                             tags$img(src = "1.png", alt = "1"),
+                             tags$div(class = "container",
+                                      tags$div(class = "carousel-caption",
+                                               tags$h1(class = "fit-head", style = "color:white", "Get set to Discover Melbourne"),
+                                               tags$p(class = "fit-text", "There's something new around every corner."),
+                                               tags$p(
+                                                 tags$a(class = "btn btn-lg btn-primary", onclick = "$('li:eq(1) a').tab('show');", role = "button", "Explore now »")
+                                               )
+                                      )
+                             )
                     ),
-                    tags$div(class = "carousel-item",
-                             tags$img(src = "2.png", class = "d-block w-100"),
-                             tags$div(class = "carousel-caption", "Caption for Image 2")
+                    tags$div(class = "item",
+                             tags$img(src = "2.png", alt = "2"),
+                             # tags$div(class = "container",
+                             #          tags$div(class = "carousel-caption",
+                             #                   tags$h1(class = "fit-head", style = "color:white", "Exploring Melbourne"),
+                             #                   tags$p(class = "fit-text", "From vintage cafe to luxury malls, Melbourne has a dream space for everyone."),
+                             #                   tags$a(class = "btn btn-lg btn-primary", onclick = "$('li:eq(2) a').tab('show');", role = "button", "Explore now »")
+                             #          )
+                             # )
                     ),
-                    tags$div(class = "carousel-item",
-                             tags$img(src = "1.png", class = "d-block w-100"),
-                             tags$div(class = "carousel-caption", "Caption for Image 3")
+                    tags$div(class = "item",
+                             tags$img(src = "1.png", alt = "3"),
+                             # tags$div(class = "container",
+                             #          tags$div(class = "carousel-caption",
+                             #                   tags$h1(class = "fit-head", style = "color:white", "Exploring Melbourne"),
+                             #                   tags$p(class = "fit-text", "From vintage cafe to luxury malls, Melbourne has a dream space for everyone."),
+                             #                   tags$a(class = "btn btn-lg btn-primary", onclick = "$('li:eq(3) a').tab('show');", role = "button", "Explore now »")
+                             #          )
+                             # )
+                    ),
+                    tags$div(class = "item",
+                             tags$img(src = "1.png", alt = "4"),
+                             # tags$div(class = "container",
+                             #          tags$div(class = "carousel-caption",
+                             #                   tags$h1(class = "fit-head", style = "color:white", "Exploring Melbourne"),
+                             #                   tags$p(class = "fit-text", "From vintage cafe to luxury malls, Melbourne has a dream space for everyone."),
+                             #                   tags$a(class = "btn btn-lg btn-primary", onclick = "$('li:eq(4) a').tab('show');", role = "button", "Explore now »")
+                             #          )
+                             # )
                     )
            ),
            
            # Left and right controls
-           tags$a(class = "carousel-control-prev", href = "#myCarousel", role = "button", 'data-slide' = "prev",
-                  tags$span(class = "carousel-control-prev-icon", aria_hidden = "true"),
-                  tags$span(class = "sr-only", "Previous")
+           tags$a(class = "left carousel-control", href = "#myCarousel", 'data-slide' = "prev",
+                  tags$span(class = "glyphicon glyphicon-chevron-left")
            ),
-           tags$a(class = "carousel-control-next", href = "#myCarousel", role = "button", 'data-slide' = "next",
-                  tags$span(class = "carousel-control-next-icon", aria_hidden = "true"),
-                  tags$span(class = "sr-only", "Next")
+           tags$a(class = "right carousel-control", href = "#myCarousel", 'data-slide' = "next",
+                  tags$span(class = "glyphicon glyphicon-chevron-right")
            )
   )
 }
