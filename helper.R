@@ -42,6 +42,77 @@ theme_color_mapping <- c('Retail' = 'red',
                          'Community Use' = 'green', 
                          'Place Of Assembly' = 'purple')
 
+#Weather
+Sys.setenv(OWM_API_KEY = "3614f35658ccb95466f1d5c29e4d73ff")
+
+current_weather <- get_current("Melbourne, AU", units = "metric")
+melbourne_cbd <- get_current("Melbourne, AU", units = "metric")
+st_kilda <- get_current("St Kilda, Melbourne, AU", units = "metric")
+richmond <- get_current("Richmond, Melbourne, AU", units = "metric")
+fitzroy <- get_current("Fitzroy, Melbourne, AU", units = "metric")
+docklands <- get_current("Docklands, Melbourne, AU", units = "metric")
+southyarra <- get_current("South Yarra, Melbourne, AU", units = "metric")
+brighton <- get_current("Brighton, Melbourne, AU", units = "metric")
+brunswick <- get_current("Brunswick, Melbourne, AU", units = "metric")
+footscray <- get_current("Footscray, Melbourne, AU", units = "metric")
+toorak <- get_current("Toorak, Melbourne, AU", units = "metric")
+
+forecast_data <- get_forecast("Melbourne, AU", units = "metric")
+forecast_df <- data.frame(
+  tmstmp =  forecast_data$list$dt_txt,
+  temp = forecast_data$list$main.temp,
+  fl_temp = forecast_data$list$main.feels_like,
+  humidity = forecast_data$list$main.humidity
+)
+forecast_df$tmstmp <- ymd_hms(forecast_df$tmstmp)
+forecast_df$tmstmp <- as.POSIXlt(forecast_df$tmstmp, tz="Australia/Sydney")
+
+#Restaurant
+
+#get the restaurants data and country geolocation from csv file
+restaurants_data <- read.csv('data/cafes-and-restaurants-with-seating-capacity.csv') 
+data_description <- restaurants_data$Industry..ANZSIC4..description
+
+#popup for each restaurant seating type and number of seats
+makeFoodPopup <- function(row) {
+  paste0(strong(row$Trading.name), br(),
+         ' (', row$Seating.type, ')', br(),
+         'Number of seats: ', row$Number.of.seats, br())
+}
+
+#create Icon for each category
+#the cafe image is downloaded from https://www.flaticon.com/free-icon/cafe_9620447?term=cafe&page=1&position=20&origin=search&related_id=9620447
+cafeIcon <- makeIcon(
+  'cafe.png',
+  iconWidth = 15,
+  iconHeight = 15
+)
+
+#the image is downloaded from https://www.flaticon.com/free-icons/bakery
+bakeryIcon <- makeIcon(
+  'bakery.png',
+  iconWidth = 15,
+  iconHeight = 15
+)
+
+takeawayIcon <- makeIcon(
+  'takeaway.png',
+  iconWidth = 15,
+  iconHeight = 15
+)
+
+#Icon_allocated <- sapply(data_description, function(type){
+#if(type == "Cafes and Restaurants"){
+#return(cafeIcon)
+#}else if (type == 'Takeaway Food Services'){
+#return(barIcon)
+#}else if (type == "Pubs, Taverns and Bars"){
+#return(takeawayIcon)
+#}else{return(cafeIcon)
+#}
+#})
+
+restaurants_data$Popup <- by(restaurants_data, seq_len(nrow(restaurants_data)), makeFoodPopup)
 # 使用例子
 # result <- find_nearby_poi("Melbourne Aquarium / Flinders Street")
 # print(result)
