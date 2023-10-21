@@ -19,7 +19,7 @@ haversine <- function(lon1, lat1, lon2, lat2) {
 
 find_nearby_poi <- function(name) {
   tram_location <- tram_point %>% filter(name == !!name) %>% select(lat, lon)
-
+  
   if(nrow(tram_location) == 0) {
     return(data.frame(name=character(), lat=numeric(), lon=numeric()))
   }
@@ -53,3 +53,53 @@ theme_color_mapping <- c('Retail' = 'red',
 #   coord_polar("y", start = 0) + 
 #   theme_void() +
 #   labs(title = "Distribution of Themes", fill = "Theme")
+
+
+################ silde img
+carouselHead <-function(){
+  tags$head(
+    tags$link(rel = "stylesheet", type = "text/css", href = "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"),
+    tags$script(type = "text/javascript", src = "https://code.jquery.com/jquery-3.2.1.slim.min.js"),
+    tags$script(type = "text/javascript", src = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"),
+    tags$script(type = "text/javascript", src = "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js")
+  )
+}
+carouselUI <- function() {
+  
+  
+  tags$div(class = "carousel slide", data_ride = "carousel", id = "myCarousel",
+           
+           # Indicators
+           tags$ol(class = "carousel-indicators",
+                   tags$li(data_target = "#myCarousel", data_slide_to = "0", class = "active"),
+                   tags$li(data_target = "#myCarousel", data_slide_to = "1"),
+                   tags$li(data_target = "#myCarousel", data_slide_to = "2")
+           ),
+           
+           # Slides
+           tags$div(class = "carousel-inner",
+                    tags$div(class = "carousel-item active",
+                             tags$img(src = "1.png", class = "d-block w-100"),
+                             tags$div(class = "carousel-caption", "Caption for Image 1")
+                    ),
+                    tags$div(class = "carousel-item",
+                             tags$img(src = "2.png", class = "d-block w-100"),
+                             tags$div(class = "carousel-caption", "Caption for Image 2")
+                    ),
+                    tags$div(class = "carousel-item",
+                             tags$img(src = "1.png", class = "d-block w-100"),
+                             tags$div(class = "carousel-caption", "Caption for Image 3")
+                    )
+           ),
+           
+           # Left and right controls
+           tags$a(class = "carousel-control-prev", href = "#myCarousel", role = "button", 'data-slide' = "prev",
+                  tags$span(class = "carousel-control-prev-icon", aria_hidden = "true"),
+                  tags$span(class = "sr-only", "Previous")
+           ),
+           tags$a(class = "carousel-control-next", href = "#myCarousel", role = "button", 'data-slide' = "next",
+                  tags$span(class = "carousel-control-next-icon", aria_hidden = "true"),
+                  tags$span(class = "sr-only", "Next")
+           )
+  )
+}

@@ -69,5 +69,9 @@ server <- function(input, output, session) {
     girafe(ggobj=p, height_svg=4, width_svg=4)
   })
   
+  output$welcomeMessage <- renderText({
+    return("欢迎来到我的Shiny应用!")
+  })
+  
   
 }
