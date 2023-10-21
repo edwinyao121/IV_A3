@@ -88,33 +88,33 @@ carouselUI <- function() {
                     ),
                     tags$div(class = "item",
                              tags$img(src = "2.png", alt = "2"),
-                             # tags$div(class = "container",
-                             #          tags$div(class = "carousel-caption",
-                             #                   tags$h1(class = "fit-head", style = "color:white", "Exploring Melbourne"),
-                             #                   tags$p(class = "fit-text", "From vintage cafe to luxury malls, Melbourne has a dream space for everyone."),
-                             #                   tags$a(class = "btn btn-lg btn-primary", onclick = "$('li:eq(2) a').tab('show');", role = "button", "Explore now »")
-                             #          )
-                             # )
+                             tags$div(class = "container",
+                                      tags$div(class = "carousel-caption",
+                                               tags$h1(class = "fit-head", style = "color:white", "Exploring Melbourne"),
+                                               tags$p(class = "fit-text", "From vintage cafe to luxury malls, Melbourne has a dream space for everyone."),
+                                               tags$a(class = "btn btn-lg btn-primary", onclick = "$('li:eq(2) a').tab('show');", role = "button", "Explore now »")
+                                      )
+                             )
                     ),
                     tags$div(class = "item",
                              tags$img(src = "1.png", alt = "3"),
-                             # tags$div(class = "container",
-                             #          tags$div(class = "carousel-caption",
-                             #                   tags$h1(class = "fit-head", style = "color:white", "Exploring Melbourne"),
-                             #                   tags$p(class = "fit-text", "From vintage cafe to luxury malls, Melbourne has a dream space for everyone."),
-                             #                   tags$a(class = "btn btn-lg btn-primary", onclick = "$('li:eq(3) a').tab('show');", role = "button", "Explore now »")
-                             #          )
-                             # )
+                             tags$div(class = "container",
+                                      tags$div(class = "carousel-caption",
+                                               tags$h1(class = "fit-head", style = "color:white", "Exploring Melbourne"),
+                                               tags$p(class = "fit-text", "From vintage cafe to luxury malls, Melbourne has a dream space for everyone."),
+                                               tags$a(class = "btn btn-lg btn-primary", onclick = "$('li:eq(3) a').tab('show');", role = "button", "Explore now »")
+                                      )
+                             )
                     ),
                     tags$div(class = "item",
                              tags$img(src = "1.png", alt = "4"),
-                             # tags$div(class = "container",
-                             #          tags$div(class = "carousel-caption",
-                             #                   tags$h1(class = "fit-head", style = "color:white", "Exploring Melbourne"),
-                             #                   tags$p(class = "fit-text", "From vintage cafe to luxury malls, Melbourne has a dream space for everyone."),
-                             #                   tags$a(class = "btn btn-lg btn-primary", onclick = "$('li:eq(4) a').tab('show');", role = "button", "Explore now »")
-                             #          )
-                             # )
+                             tags$div(class = "container",
+                                      tags$div(class = "carousel-caption",
+                                               tags$h1(class = "fit-head", style = "color:white", "Exploring Melbourne"),
+                                               tags$p(class = "fit-text", "From vintage cafe to luxury malls, Melbourne has a dream space for everyone."),
+                                               tags$a(class = "btn btn-lg btn-primary", onclick = "$('li:eq(4) a').tab('show');", role = "button", "Explore now »")
+                                      )
+                             )
                     )
            ),
            
