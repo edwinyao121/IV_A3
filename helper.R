@@ -71,7 +71,6 @@ forecast_df$tmstmp <- as.POSIXlt(forecast_df$tmstmp, tz="Australia/Sydney")
 
 #get the restaurants data and country geolocation from csv file
 restaurants_data <- read.csv('data/cafes-and-restaurants-with-seating-capacity.csv') 
-data_description <- restaurants_data$Industry..ANZSIC4..description
 
 #popup for each restaurant seating type and number of seats
 makeFoodPopup <- function(row) {
@@ -80,39 +79,16 @@ makeFoodPopup <- function(row) {
          'Number of seats: ', row$Number.of.seats, br())
 }
 
-#create Icon for each category
-#the cafe image is downloaded from https://www.flaticon.com/free-icon/cafe_9620447?term=cafe&page=1&position=20&origin=search&related_id=9620447
-cafeIcon <- makeIcon(
-  'cafe.png',
-  iconWidth = 15,
-  iconHeight = 15
+#create Icon for restaurant
+#the cafe image is downloaded from https://www.flaticon.com/free-icon/restaurant_4682602?term=restaurant&page=1&position=36&origin=tag&related_id=4682602
+eatIcon <- makeIcon(
+  'restaurant.png',
+  iconWidth = 20,
+  iconHeight = 20
 )
-
-#the image is downloaded from https://www.flaticon.com/free-icons/bakery
-bakeryIcon <- makeIcon(
-  'bakery.png',
-  iconWidth = 15,
-  iconHeight = 15
-)
-
-takeawayIcon <- makeIcon(
-  'takeaway.png',
-  iconWidth = 15,
-  iconHeight = 15
-)
-
-#Icon_allocated <- sapply(data_description, function(type){
-#if(type == "Cafes and Restaurants"){
-#return(cafeIcon)
-#}else if (type == 'Takeaway Food Services'){
-#return(barIcon)
-#}else if (type == "Pubs, Taverns and Bars"){
-#return(takeawayIcon)
-#}else{return(cafeIcon)
-#}
-#})
 
 restaurants_data$Popup <- by(restaurants_data, seq_len(nrow(restaurants_data)), makeFoodPopup)
+
 # 使用例子
 # result <- find_nearby_poi("Melbourne Aquarium / Flinders Street")
 # print(result)
