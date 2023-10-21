@@ -11,10 +11,8 @@ library(rgdal)
 library(highcharter)
 library(shinyWidgets)
 library(fontawesome)
-
 library(wordcloud2)
 library(dplyr)
-
 library('leaflet')
 library('tidyr')
 library('png')
@@ -168,41 +166,6 @@ body <- dashboardBody(
     
     
   )
- 
-  # tabItem("weather",
-  #         fluidPage(
-  #           titlePanel(strong("Weather in Melbourne")),
-  #           hr(),
-  #           h5(strong(paste("Current Weather Overview of", 
-  #                           substr(as_datetime(current_weather$dt, tz = "Australia/Sydney"), 1, 10))),
-  #              style = "font-size:16px;"),
-  #           fluidRow(
-  #             column(4, valueBoxOutput("cur_temp", width = 20)),
-  #             column(4, valueBoxOutput("wind_speed", width = 20)),
-  #             column(4, valueBoxOutput("current_condition", width = 20)),
-  #           ),
-  #           hr(),
-  #           fluidRow(
-  #             column(12, 
-  #                    selectInput("region", "Choose a region:", 
-  #                                choices = c("City of Melbourne", "St Kilda", "Richmond", "Docklands"
-  #                                            , "Fitzroy", "South Yarra", "Brighton", "Brunswick",
-  #                                            "Footscray", "Toorak"))
-  #             ),
-  #             hr(),
-  #             column(12,
-  #                    uiOutput("weatherBoxes")
-  #             )
-  #           ),
-  #           fluidRow(
-  #             column(12, highchartOutput("forecast_temp", height = 300))
-  #           ),
-  #           hr(),
-  #           fluidRow(
-  #             column(12, highchartOutput("forecast_humidity", height = 300))
-  #           )
-  #         )
-  # )
 )
 
 # ui <- navbarPage(
