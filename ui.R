@@ -10,6 +10,7 @@ library(lubridate)
 library(rgdal)
 library(highcharter)
 library(shinyWidgets)
+library(fontawesome)
 
 library(wordcloud2)
 library(dplyr)
