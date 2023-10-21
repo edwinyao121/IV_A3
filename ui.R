@@ -4,18 +4,9 @@ library('ggiraph')
 library('shinyjs')
 library(shinydashboard)
 library(dashboardthemes)
-library(stringr)
-library(owmr)
-library(lubridate)
-library(rgdal)
-library(highcharter)
-library(shinyWidgets)
-library(fontawesome)
+
 library(wordcloud2)
 library(dplyr)
-library('leaflet')
-library('tidyr')
-library('png')
 
 # Load the GEOM90007 Tableau in Shiny library
 source('tableau-in-shiny-v1.0.R')
@@ -43,28 +34,23 @@ header <- dashboardHeader(
   title = tags$a(tags$img(src='header.png', height='50', width='160')),
   titleWidth = 250
 )
-
 sidebar <- dashboardSidebar(
   width = 250,
   sidebarMenu(
     menuItem("Home",
-             tabName = "home",
-             selected = T
-             ),
+             tabName = "home"
+    ),
     menuItem("Places to Visit",
              tabName = "poi"
-             #,icon = icon('map-location-dot')
     ),
     menuItem("Melbourne Weather",
-             tabName = "weather",
-             icon = icon('sun')
+             tabName = "weather"
     ),
     menuItem("Places to eat",
              tabName = "foodTab"
     )
   )
 )
-
 body <- dashboardBody(
   tags$style(HTML("
       .content-wrapper, .right-side {
@@ -83,6 +69,8 @@ body <- dashboardBody(
       carouselUI()
       
     )),
+    
+    
     tabItem("poi",
             fluidPage(
               fluidRow(
@@ -91,7 +79,7 @@ body <- dashboardBody(
                        titlePanel(strong("Place Of Interest in Melbourne")),
                        tableauPublicViz(
                          id='tableauViz',
-                         url='https://public.tableau.com/views/A3yyh/Dashboard1?:language=en-US&:display_count=n&:origin=viz_share_link'
+                         url='https://public.tableau.com/views/A3yyh/Sheet3?:language=en-US&:display_count=n&:origin=viz_share_link'
                          ,height="600px",
                        )
                 ),
@@ -99,7 +87,6 @@ body <- dashboardBody(
               ),
               hr(class="white-hr"),
               hr(class="white-hr"),
-              
               
               fluidRow(
                 
@@ -169,9 +156,8 @@ body <- dashboardBody(
               )
             )
     )
-    
-    
   )
+  
 )
 
 # ui <- navbarPage(

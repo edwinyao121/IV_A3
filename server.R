@@ -4,7 +4,7 @@ server <- function(input, output, session) {
     # Find the name of the hospital clicked by the user
     sta <- input$tableauViz_parameter_changed$value
     
-    # If no hospital selected, stop
+    
     if(is.null(sta)) return()
     if(sta=='null') return()
     
@@ -46,7 +46,6 @@ server <- function(input, output, session) {
     # Find the name of the hospital clicked by the user
     station_name <- input$tableauViz_parameter_changed$value
     
-    # If no hospital selected, stop
     if(is.null(station_name)) return()
     if(station_name=='null') return()
     
@@ -67,6 +66,10 @@ server <- function(input, output, session) {
     
     
     girafe(ggobj=p, height_svg=4, width_svg=4)
+  })
+  
+  output$welcomeMessage <- renderText({
+    return("欢迎来到我的Shiny应用!")
   })
   
   #Weather
@@ -404,4 +407,6 @@ server <- function(input, output, session) {
                  popup=~Popup,
                  layerId=~Trading.name)
   })
+  
+  
 }
