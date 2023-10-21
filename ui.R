@@ -1,27 +1,30 @@
-library('shiny')
-library('ggplot2')
-library('ggiraph')
-library('shinyjs')
+library(shiny)
+library(ggplot2)
+library(ggiraph)
+library(shinyjs)
 library(shinydashboard)
 library(dashboardthemes)
 library(stringr)
 library(owmr)
-library(lubridate)
 library(rgdal)
+library(lubridate)
 library(highcharter)
 library(shinyWidgets)
 library(fontawesome)
 library(wordcloud2)
 library(dplyr)
-library('leaflet')
-library('tidyr')
-library('png')
+library(leaflet)
+library(tidyr)
+library(png)
+
+
 
 # Load the GEOM90007 Tableau in Shiny library
 source('tableau-in-shiny-v1.0.R')
 
 # load data
 source('helper.R')
+
 
 ##################
 # USER INTERFACE #
@@ -55,8 +58,11 @@ sidebar <- dashboardSidebar(
     menuItem("Melbourne Weather",
              tabName = "weather"
     ),
-    menuItem("Places to eat",
+    menuItem("Places to Eat",
              tabName = "foodTab"
+    ),
+    menuItem("Places to Drink",
+             tabName = "lineTab"
     )
   )
 )
@@ -112,7 +118,7 @@ body <- dashboardBody(
             fluidPage(
               titlePanel(strong("Weather in Melbourne")),
               hr(),
-              h5(strong(paste("Current Weather Overview of", 
+              h5(strong(paste("Current Weather Overview of",
                               substr(as_datetime(current_weather$dt, tz = "Australia/Sydney"), 1, 10)))),
               fluidRow(
                 column(4, valueBoxOutput("cur_temp", width = 20)),
@@ -122,8 +128,8 @@ body <- dashboardBody(
               hr(),
               h4(strong("Weather conditions in various areas of Melbourne")),
               fluidRow(
-                column(12, 
-                       selectInput("region", "Choose a region:", 
+                column(12,
+                       selectInput("region", "Choose a region:",
                                    choices = c("City of Melbourne", "St Kilda", "Richmond", "Docklands"
                                                , "Fitzroy", "South Yarra", "Brighton", "Brunswick",
                                                "Footscray", "Toorak"))
@@ -144,6 +150,7 @@ body <- dashboardBody(
               )
             )
     ),
+
     tabItem(tabName = "foodTab",
             h2('Places to eat'),
             sidebarLayout(
@@ -166,26 +173,38 @@ body <- dashboardBody(
                 leafletOutput('map_food', height = 600)
               )
             )
+    ),
+
+    tabItem("lineTab",
+    fluidPage(
+    title='Places to Drink', #Popularity of bars
+     h5('Ranking the popularity of bars in the suburb'),
+     splitLayout(
+       cellWidths = c("40%", "60%"),
+       girafeOutput('plot_lines' , height = 600),
+        tableauPublicViz(
+          id='tableauViz',       
+          url='https://public.tableau.com/shared/2Q5FXWFHJ?:display_count=n&:origin=viz_share_link',
+          height="600px"
+        ),
+      ) ,
+   girafeOutput('plot_lines2' ,  height = 600),
     )
   )
-  
+ )
 )
+  
 
-# ui <- navbarPage(
-#   header=setUpTableauInShiny(),
-#   title='Place Of Interest in Melbroune',
-#   poi_tab
-# )
 # Putting the UI together
 ui <- dashboardPage(
   title = "123",
   header, 
   sidebar, 
   body
-)
+  )
 
 #############
 # Run Shiny #
 #############
 
-#shinyApp(ui, server, options=list(launch.browser=TRUE))
+# shinyApp(ui, server, options=list(launch.browser=TRUE))

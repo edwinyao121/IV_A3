@@ -1,3 +1,4 @@
+
 server <- function(input, output, session) {
   
   output$myWordcloud <- renderWordcloud2({
@@ -378,7 +379,7 @@ server <- function(input, output, session) {
            if (input$Area == 'All') TRUE else CLUE.small.area == input$Area)
   })
   
-  #create map with reactive(input) restaurant data 
+  #create map with reactive(input) data
   output$map_food <- renderLeaflet({
     
     reactive_data <- getFilteredRegionData()
@@ -389,14 +390,73 @@ server <- function(input, output, session) {
       need(reactive_data != "", "There is no available data, please choose other surburbs")
     )
     
+    Icon_allocated <- sapply(reactive_data$Industry..ANZSIC4..description, function(type){
+      if(type == "Cafes and Restaurants"){
+        return(cafeIcon)
+      }else if (type == 'Takeaway Food Services'){
+        return(takeawayIcon)
+      }else if (type == "Bakery Product Manufacturing (Non-factory based)"){
+        return(bakeryIcon)
+      }else{return(cafeIcon)
+      }
+    })
     
     leaflet(reactive_data) %>%
       addProviderTiles(providers$CartoDB) %>%
-      addMarkers(lng=~Longitude, lat=~Latitude, icon =~eatIcon, clusterOptions = markerClusterOptions(),
+      addMarkers(lng=~Longitude, lat=~Latitude, clusterOptions = markerClusterOptions(),
                  label=~Trading.name,
                  popup=~Popup,
                  layerId=~Trading.name)
   })
   
+  
+  ###Bars###########
+  
+  barsdata <- read.csv('bars-and-pubs-with-patron-capacity.csv')
+  
+  trading_data <- barsdata %>% group_by( Trading.name  ) %>%
+    summarise( number_of_parons=sum( Number.of.patrons ) ) %>%   ungroup() %>%
+    arrange(desc( number_of_parons ) ) %>% 
+    slice_head(n=20 ) 
+  trading_data$Trading.name <- factor(trading_data$Trading.name, levels = trading_data$Trading.name)
+  
+  output$plot_lines <- renderGirafe({
+    
+    lineplot <-  trading_data %>% 
+      rename(name= Trading.name   ) %>%  ggplot( aes(x = rev(name), y= number_of_parons  ,group=1 ,data_id = name)) +
+      geom_bar_interactive(stat='identity', width=0.8, fill='#8f00b6')+
+      # theme(axis.text.x = element_text(angle = 90, hjust = 1) ,panel.grid = element_blank(),
+      #       panel.background = element_rect(fill = "white") ) +
+      labs(x = NULL, y = "Number of patrons", title = "Ranking the popularity of bars in the surburb")+
+      scale_y_continuous(limits = c(0, 60000))+
+      coord_flip()+
+      theme_minimal()+
+      theme(plot.title = element_text(hjust = 0, size = 10))
+    
+    
+    girafe(ggobj=lineplot, height_svg=5)
+  })
+  
+      observeEvent(input$plot_lines_selected, {
+    
+    print(input$plot_lines_selected )
+    # Clear selection from bar chart
+    session$sendCustomMessage(type='plot_lines_set', message=character(0))
+    
+    # Filter Tableau viz by the state that was clicked on the bar chart
+    TradingName <- input$plot_lines_selected
+    
+    print(TradingName)
+    
+    runjs(
+      
+      sprintf('let viz = document.getElementById("tableauViz");
+let sheet = viz.workbook.activeSheet;
+console.log(sheet.worksheets[0] );
+sheet.worksheets[0].applyFilterAsync("Trading name", ["%s"], FilterUpdateType.Replace);', TradingName)
+      
+      
+    )
+  })
   
 }
