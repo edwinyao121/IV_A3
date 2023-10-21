@@ -378,7 +378,7 @@ server <- function(input, output, session) {
            if (input$Area == 'All') TRUE else CLUE.small.area == input$Area)
   })
   
-  #create map with reactive(input) data
+  #create map with reactive(input) restaurant data 
   output$map_food <- renderLeaflet({
     
     reactive_data <- getFilteredRegionData()
@@ -389,20 +389,10 @@ server <- function(input, output, session) {
       need(reactive_data != "", "There is no available data, please choose other surburbs")
     )
     
-    Icon_allocated <- sapply(reactive_data$Industry..ANZSIC4..description, function(type){
-      if(type == "Cafes and Restaurants"){
-        return(cafeIcon)
-      }else if (type == 'Takeaway Food Services'){
-        return(takeawayIcon)
-      }else if (type == "Bakery Product Manufacturing (Non-factory based)"){
-        return(bakeryIcon)
-      }else{return(cafeIcon)
-      }
-    })
     
     leaflet(reactive_data) %>%
       addProviderTiles(providers$CartoDB) %>%
-      addMarkers(lng=~Longitude, lat=~Latitude, clusterOptions = markerClusterOptions(),
+      addMarkers(lng=~Longitude, lat=~Latitude, icon =~eatIcon, clusterOptions = markerClusterOptions(),
                  label=~Trading.name,
                  popup=~Popup,
                  layerId=~Trading.name)
