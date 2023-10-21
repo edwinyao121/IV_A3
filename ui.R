@@ -107,4 +107,4 @@ ui <- dashboardPage(
 # Run Shiny #
 #############
 
-shinyApp(ui, server, options=list(launch.browser=TRUE))
+#shinyApp(ui, server, options=list(launch.browser=TRUE))
