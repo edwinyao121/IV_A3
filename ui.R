@@ -47,11 +47,10 @@ header <- dashboardHeader(
 sidebar <- dashboardSidebar(
   width = 250,
   sidebarMenu(
-    # menuItem("Home",
-    #          tabName = "home",
-    #          selected = T,
-    #          icon = icon('thumbs-up')
-    #          ),
+    menuItem("Home",
+             tabName = "home",
+             selected = T
+             ),
     menuItem("Places to Visit",
              tabName = "poi"
              #,icon = icon('map-location-dot')
@@ -77,6 +76,13 @@ body <- dashboardBody(
   ")),
   setUpTableauInShiny(),
   tabItems(
+    tabItem("home",fluidPage(
+      
+      # 定义文字输出的位置
+      carouselHead(),
+      carouselUI()
+      
+    )),
     tabItem("poi",
             fluidPage(
               fluidRow(
