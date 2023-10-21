@@ -124,3 +124,67 @@ restaurants_data$Popup <- by(restaurants_data, seq_len(nrow(restaurants_data)), 
 #   coord_polar("y", start = 0) + 
 #   theme_void() +
 #   labs(title = "Distribution of Themes", fill = "Theme")
+################ silde img
+carouselHead <-function(){
+  tags$head(
+    tags$link(rel = "stylesheet", type = "text/css", href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+  )
+}
+carouselUI <- function() {
+  tags$div(id = "myCarousel", class = "carousel slide", data_ride = "carousel",
+           
+           # Indicators
+           tags$ol(class = "carousel-indicators",
+                   tags$li(data_target = "#myCarousel", data_slide_to = "0", class = "active"),
+                   tags$li(data_target = "#myCarousel", data_slide_to = "1"),
+                   tags$li(data_target = "#myCarousel", data_slide_to = "2"),
+                   tags$li(data_target = "#myCarousel", data_slide_to = "3")
+           ),
+           
+           # Slides
+           tags$div(class = "carousel-inner",
+                    tags$div(class = "item active",
+                             tags$img(src = "1.png", alt = "1"),
+                             tags$div(class = "container",
+                                      tags$div(class = "carousel-caption",
+                                               tags$p(
+                                                 tags$a(class = "btn btn-lg btn-primary", onclick = "$('li:eq(1) a').tab('show');", role = "button", "Check POI ")
+                                               )
+                                      )
+                             )
+                    ),
+                    tags$div(class = "item",
+                             tags$img(src = "2.png", alt = "2"),
+                             tags$div(class = "container",
+                                      tags$div(class = "carousel-caption",
+                                               tags$a(class = "btn btn-lg btn-primary", onclick = "$('li:eq(2) a').tab('show');", role = "button", "Check Weather ")
+                                      )
+                             )
+                    ),
+                    tags$div(class = "item",
+                             tags$img(src = "3.png", alt = "3"),
+                             tags$div(class = "container",
+                                      tags$div(class = "carousel-caption",
+                                               tags$a(class = "btn btn-lg btn-primary", onclick = "$('li:eq(3) a').tab('show');", role = "button", "Check Restaurant ")
+                                      )
+                             )
+                    ),
+                    tags$div(class = "item",
+                             tags$img(src = "4.png", alt = "4"),
+                             tags$div(class = "container",
+                                      tags$div(class = "carousel-caption",
+                                               tags$a(class = "btn btn-lg btn-primary", onclick = "$('li:eq(4) a').tab('show');", role = "button", "Check Bar ")
+                                      )
+                             )
+                    )
+           ),
+           
+           # Left and right controls
+           tags$a(class = "left carousel-control", href = "#myCarousel", 'data-slide' = "prev",
+                  tags$span(class = "glyphicon glyphicon-chevron-left")
+           ),
+           tags$a(class = "right carousel-control", href = "#myCarousel", 'data-slide' = "next",
+                  tags$span(class = "glyphicon glyphicon-chevron-right")
+           )
+  )
+}
