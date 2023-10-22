@@ -17,7 +17,7 @@ library(leaflet)
 library(tidyr)
 library(png)
 
-
+##副本
 
 # Load the GEOM90007 Tableau in Shiny library
 source('tableau-in-shiny-v1.0.R')
@@ -178,13 +178,11 @@ body <- dashboardBody(
     tabItem("lineTab",
     fluidPage(
     title='Places to Drink', #Popularity of bars
-     h5('Ranking the popularity of bars in the suburb'),
+     h5('Places to Drink'),
      splitLayout(
-       cellWidths = c("40%", "60%"),
-       girafeOutput('plot_lines' , height = 600),
         tableauPublicViz(
           id='tableauViz',       
-          url='https://public.tableau.com/shared/2Q5FXWFHJ?:display_count=n&:origin=viz_share_link',
+          url='https://public.tableau.com/shared/9MB78GQ7N?:display_count=n&:origin=viz_share_link',
           height="600px"
         ),
       ) ,
