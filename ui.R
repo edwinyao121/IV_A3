@@ -158,7 +158,7 @@ body <- dashboardBody(
     ),
 
     tabItem(tabName = "foodTab",
-            h2('Places to eat'),
+            titlePanel(strong("Places to eat")),
             sidebarLayout(
               sidebarPanel(
                 selectInput(
@@ -183,12 +183,11 @@ body <- dashboardBody(
 
     tabItem("lineTab",
     fluidPage(
-    title='Places to Drink', #Popularity of bars
-     h5('Places to Drink'),
+    titlePanel(strong("Places to drink")), #Popularity of bars
      splitLayout(
         tableauPublicViz(
           id='tableauViz',       
-          url='https://public.tableau.com/shared/9MB78GQ7N?:display_count=n&:origin=viz_share_link',
+          url='https://public.tableau.com/views/cafes_16976382895680/Dashboard1?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link',
           height="600px"
         ),
       ) ,
