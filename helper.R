@@ -1,3 +1,8 @@
+# 	https://data.melbourne.vic.gov.au/explore/dataset/landmarks-and-places-of-interest-including-schools-theatres-health-services-spor/export/
+# 
+# 	Tram 
+# https://data.melbourne.vic.gov.au/explore/dataset/city-circle-tram-stops/export/?location=15,-37.80829,144.9566&basemap=mbs-7a7333
+
 poi <- read.csv('data/filtered_poi.csv')
 tram_point<-read.csv('data/tram_point.csv')
 
