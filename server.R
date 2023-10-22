@@ -91,14 +91,19 @@ server <- function(input, output, session) {
     )
   )
   
-  output$current_condition <- renderValueBox(
+  output$current_condition <- renderValueBox({
     valueBox(
-      value = tags$p(str_to_title(current_weather$weather$description), 
-                     style = "font-size: 85%;"), 
+      value = tags$p(
+        str_to_title(current_weather$weather$description), 
+        class = "wrap-text",  # Add this line
+        style = "font-size: 85%;"
+      ), 
       subtitle = "Weather Descreption",
-      icon = fa_i("fas fa-circle-info"), color = "teal"
+      icon = fa_i("fas fa-circle-info"), 
+      color = "teal"
     )
-  )
+  })
+  
   
   output$weatherBoxes <- renderUI({
     # Depending on the chosen region, render a set of value boxes
@@ -147,23 +152,23 @@ server <- function(input, output, session) {
                color = "aqua"
              ),
            ),
-           "Richmond" = div(
+           "Camberwell" = div(
              valueBox(
-               value = tags$p(paste(richmond$main$temp, "ºC"), style = "font-size: 85%;"), 
+               value = tags$p(paste(camberwell$main$temp, "ºC"), style = "font-size: 85%;"), 
                subtitle = paste("Temperature (°C)"),
                icon = fa_i("fas fa-temperature-three-quarters"), 
                color = "orange"
              ),
              valueBox(
-               value = tags$p(paste(round(richmond$main$temp_min), "-",
-                                    round(richmond$main$temp_max), "ºC"),
+               value = tags$p(paste(round(camberwell$main$temp_min), "-",
+                                    round(camberwell$main$temp_max), "ºC"),
                               style = "font-size: 85%;"), 
                subtitle = paste("Temperature Range"),
                icon = fa_i("fas fa-thermometer-half"), 
                color = "olive"
              ),
              valueBox(
-               value = tags$p(paste(richmond$main$humidity, "%"), style = "font-size: 85%;"), 
+               value = tags$p(paste(camberwell$main$humidity, "%"), style = "font-size: 85%;"), 
                subtitle = paste("Humidity (%)"),
                icon = icon("tint"), 
                color = "aqua"
@@ -235,23 +240,23 @@ server <- function(input, output, session) {
                color = "aqua"
              ),
            ),
-           "Brighton" = div(
+           "Hawthorn" = div(
              valueBox(
-               value = tags$p(paste(brighton$main$temp, "ºC"), style = "font-size: 85%;"), 
+               value = tags$p(paste(hawthorn$main$temp, "ºC"), style = "font-size: 85%;"), 
                subtitle = paste("Temperature (°C)"),
                icon = fa_i("fas fa-temperature-three-quarters"), 
                color = "orange"
              ),
              valueBox(
-               value = tags$p(paste(round(brighton$main$temp_min), "-",
-                                    round(brighton$main$temp_max), "ºC"),
+               value = tags$p(paste(round(hawthorn$main$temp_min), "-",
+                                    round(hawthorn$main$temp_max), "ºC"),
                               style = "font-size: 85%;"), 
                subtitle = paste("Temperature Range"),
                icon = fa_i("fas fa-thermometer-half"), 
                color = "olive"
              ),
              valueBox(
-               value = tags$p(paste(brighton$main$humidity, "%"), style = "font-size: 85%;"), 
+               value = tags$p(paste(hawthorn$main$humidity, "%"), style = "font-size: 85%;"), 
                subtitle = paste("Humidity (%)"),
                icon = icon("tint"), 
                color = "aqua"

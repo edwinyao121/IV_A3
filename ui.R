@@ -75,6 +75,12 @@ body <- dashboardBody(
       border-top: 1px solid white;
     }
   ")),
+  tags$style(HTML("
+    .wrap-text {
+      white-space: normal;
+      word-wrap: break-word;
+    }
+  ")),
   setUpTableauInShiny(),
   tabItems(
     tabItem("home",fluidPage(
@@ -130,8 +136,8 @@ body <- dashboardBody(
               fluidRow(
                 column(12,
                        selectInput("region", "Choose a region:",
-                                   choices = c("City of Melbourne", "St Kilda", "Richmond", "Docklands"
-                                               , "Fitzroy", "South Yarra", "Brighton", "Brunswick",
+                                   choices = c("City of Melbourne", "St Kilda", "Camberwell", "Docklands"
+                                               , "Fitzroy", "South Yarra", "Hawthorn", "Brunswick",
                                                "Footscray", "Toorak"))
                 ),
                 hr(),
@@ -195,7 +201,7 @@ body <- dashboardBody(
 
 # Putting the UI together
 ui <- dashboardPage(
-  title = "123",
+  title = "Discover in Melbourne",
   header, 
   sidebar, 
   body
