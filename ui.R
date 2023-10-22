@@ -17,7 +17,7 @@ library(leaflet)
 library(tidyr)
 library(png)
 
-##副本
+
 
 # Load the GEOM90007 Tableau in Shiny library
 source('tableau-in-shiny-v1.0.R')
@@ -85,7 +85,7 @@ body <- dashboardBody(
   tabItems(
     tabItem("home",fluidPage(
       
-      # 定义文字输出的位置
+      #
       carouselHead(),
       carouselUI()
       
@@ -95,7 +95,7 @@ body <- dashboardBody(
     tabItem("poi",
             fluidPage(
               fluidRow(
-                # 这里将Tableau的可视化放入一个较宽的列中
+                
                 column(12,
                        titlePanel(strong("Place Of Interest in Melbourne")),
                        tableauPublicViz(

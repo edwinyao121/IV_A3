@@ -13,7 +13,7 @@ server <- function(input, output, session) {
     # transform it into the format required by ggplot's geom_line
     
     data <- find_nearby_poi(sta)
-    # 计算Sub.Theme的频率
+    
     data <- as.data.frame(data)
     word_freq <- table(data$Sub.Theme)
     
@@ -22,7 +22,7 @@ server <- function(input, output, session) {
     color_df_sorted <- color_df[match(names(word_freq), color_df$word), ]
     
     print(word_freq)
-    # 使用wordcloud2生成词云
+    
     
     ############
     data <- data.frame(
@@ -31,7 +31,7 @@ server <- function(input, output, session) {
       stringsAsFactors = FALSE
     )
     
-    # 根据Sub.Theme列生成词云
+    
     if(sta=='Spencer Street / La Trobe Street'){
       wordcloud2(data, size=0.2,minSize=1,color='purple')
     }else{
