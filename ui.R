@@ -124,7 +124,7 @@ body <- dashboardBody(
             fluidPage(
               titlePanel(strong("Weather in Melbourne")),
               hr(),
-              h5(strong(paste("Current Weather Overview of",
+              h4(strong(paste("Current Weather Overview of",
                               substr(as_datetime(current_weather$dt, tz = "Australia/Sydney"), 1, 10)))),
               fluidRow(
                 column(4, valueBoxOutput("cur_temp", width = 20)),
